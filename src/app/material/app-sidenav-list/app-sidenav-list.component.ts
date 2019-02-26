@@ -7,17 +7,15 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./app-sidenav-list.component.css']
 })
 export class AppSidenavListComponent implements OnInit {
-  
+
   @Output() sidenavClose = new EventEmitter();
-  
+
   constructor() { }
-  
-  ngOnInit() {
-  }
-  
+
+  ngOnInit() { }
+
   public onSidenavClose = () => {
     this.sidenavClose.emit('');
   }
-  
-  
+
 }

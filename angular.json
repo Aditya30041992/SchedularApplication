@@ -25,6 +25,7 @@
             "styles": [
 
               "/home/adityashirsath/Devlopment/Angular/AMBasics/node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/@coachcare/datepicker/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
               "/home/adityashirsath/Pictures/AMBasics/node_modules/ngx-toastr/toastr.css"
 

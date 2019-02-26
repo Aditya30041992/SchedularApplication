@@ -8,8 +8,6 @@ import { Component, OnInit } from '@angular/core';
 export class Layout_Component implements OnInit {
   
   constructor() { }
-  
-  ngOnInit() {
-  }
-  
+
+  ngOnInit() { }
 }

@@ -1,6 +1,6 @@
 <section fxLayout="column wrap">
   <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
-    <mat-tab label="Training"> 
+    <mat-tab label="Training">
       <mat-card class="my-card">
         <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="end center">
           <!-- PUT YOUR LIST CAODE HERE -->
@@ -12,57 +12,46 @@
                 <th scope="col">Name</th>
               </tr>
             </thead>
-            <ng-container *ngFor="let training of oneArray">
             <tbody>
               <tr>
                 <th scope="row">1</th>
                 <td>Topic Name</td>
-                <td>{{training.topicName}}}</td>
+                <td>{{perticularTraining.topicName | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
                 <td>Trainer Name</td>
-                <td>{{training.trainerName}}</td>
+                <td>{{perticularTraining.trainerName | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
                 <td>Summary</td>
-                <td>{{training.summary}}</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Date</td>
-                <td>{{training.date}}</td>
+                <td>{{perticularTraining.summary | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">4</th>
                 <td>Start Time</td>
-                <td>{{training.startTime}}</td>
+                <td>{{perticularTraining.startTime}}</td>
               </tr>
               <tr>
                 <th scope="row">5</th>
                 <td> End Time</td>
-                <td>{{training.endTime}}</td>
+                <td>{{perticularTraining.endTime}}</td>
               </tr>
               <tr>
                 <th scope="row">6</th>
                 <td>Room Name</td>
-                <td>{{training.roomName}}</td>
+                <td>{{perticularTraining.roomName | uppercase}}</td>
               </tr>
               <tr>
-              </tbody>
-              </ng-container>s
-            </table>
-            
-            <mat-card-actions>
-              <button class="ml-3" mat-raised-button (click)="onRegisterButtonClicked()" color="primary">Register</button>
-              <button mat-raised-button (click)="onBackButtonClicked()" color="accent">Back</button>
-            </mat-card-actions>
-            
-            
-            
-          </mat-card-content>
-        </mat-card>
-      </mat-tab>
-    </mat-tab-group>
-  </section>
+            </tbody>
+          </table>
+          <mat-card-actions>
+            <button class="ml-3" mat-raised-button (click)="onRegisterButtonClicked()" color="primary">Register</button>
+            <button mat-raised-button (click)="onBackButtonClicked()" color="accent">Back</button>
+          </mat-card-actions>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</section>

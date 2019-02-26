@@ -6,13 +6,13 @@
 export const environment = {
   production: false,
   // urlAddress: 'http://localhost:5000'
-  firebaseConfig:{
-    apiKey: "AIzaSyB56uW7jUY-MXe8dMVGylEkAK0oAUEtNFE",
-    authDomain: "training-4ae7a.firebaseapp.com",
-    databaseURL: "https://training-4ae7a.firebaseio.com",
-    projectId: "training-4ae7a",
-    storageBucket: "",
-    messagingSenderId: "89962456563"
+  firebaseConfig: {
+    apiKey: 'AIzaSyB56uW7jUY-MXe8dMVGylEkAK0oAUEtNFE',
+    authDomain: 'training-4ae7a.firebaseapp.com',
+    databaseURL: 'https://training-4ae7a.firebaseio.com',
+    projectId: 'training-4ae7a',
+    storageBucket: '',
+    messagingSenderId: '89962456563'
   }
 };
 /*

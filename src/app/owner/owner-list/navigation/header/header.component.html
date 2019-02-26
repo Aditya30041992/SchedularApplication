@@ -1,16 +1,25 @@
-<mat-toolbar color="primary">
-    <div fxHide.gt-xs>
-        <button mat-icon-button (click)="onToggleSidenav()">
-            <mat-icon>menu</mat-icon>
-        </button>
+<mat-toolbar color="primary" id="mainToolbar">
+    <span class="toolbar-spacer"></span>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxHide.xs>
+        <ul fxLayout fxLayoutGap="0px" class="navigation-items ml-0">
+            <li>
+                <button mat-icon-button (click)="onToggleSidenav()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </li>
+        </ul>
     </div>
-    <div>
-        <a routerLink="/home">Home</a>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center" fxHide.xs>
+        <ul fxLayout fxLayoutGap="0px" class="navigation-items ml-2">
+            <li>
+                <a [routerLink]="['/trainings/trainings-list']">Home</a>
+            </li>
+        </ul>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items ml-5">
             <li>
-                <a [routerLink]="['/owner/owners']">Training</a>
+                <a [routerLink]="['/trainings/trainings-list']">Training</a>
             </li>
         </ul>
     </div>
@@ -21,4 +30,24 @@
             </li>
         </ul>
     </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="end none" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items ml-5">
+            <li>
+                <button mat-mini-fab [matMenuTriggerFor]="avatarDropDown" class="toolbar-avtar" [ngStyle]="{'background-image': 'url(' + user?.photoURL + ' ) ' }"
+                    (click)="onloginButtonClicked()" color="primary"></button>
+            </li>
+        </ul>
+    </div>
 </mat-toolbar>
+<mat-menu #avatarDropDown="matMenu">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{ user?.displayName }}</mat-card-title>
+            <mat-card-subtitle>{{ user?.email }}</mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+    <button mat-menu-item (click)="onloggedOutButtonClicked()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Sign Out</span>
+    </button>
+</mat-menu>

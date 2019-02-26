@@ -7,13 +7,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./resetpassword.component.css']
 })
 export class ResetpasswordComponent implements OnInit {
-  
+
   constructor(private toastr: ToastrService) { }
-  
-  ngOnInit() {
-  }
-  onSubmitButtonClicked(){
+
+  ngOnInit() { }
+
+  onSubmitButtonClicked() {
     this.toastr.success(' New Password Set Sucessfully');
-    
   }
+  
 }

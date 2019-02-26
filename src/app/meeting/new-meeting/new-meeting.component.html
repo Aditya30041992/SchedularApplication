@@ -1,93 +1,93 @@
 <div class="container">
   <section fxLayout="column wrap">
     <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
-      <mat-tab label="New-Training"> 
+      <mat-tab label="{{this.httpService.changeName}}">
         <mat-toolbar>
-          <span > New Meeting </span>
+          <span>{{this.httpService.changeName}} </span>
         </mat-toolbar>
         <mat-card class="my-card">
           <mat-card-content>
-            <form [formGroup]="this.meetingService.form"  class="my-form" >
-              <!-- <div class="controles-container"> -->
-                <div class="form-group">
-                  <input type="hidden" formControlName="$key">
-                  <mat-form-field class="full-width">
-                    <mat-label>Meeting Name</mat-label>
-                    <input  matInput formControlName="meetingName"  placeholder="Meeting name*"  name="meetingName"  required>
-                    <mat-error>Meeting Name is Manadary.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <div class="form-group">
-                  <mat-form-field class="full-width">
-                    <mat-label>Organiser Name</mat-label>
-                    <input  matInput formControlName="organiserName" placeholder="Organiser name*"  name="organiserName"  required>
-                    <mat-error>Organiser Name is Manadary.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <div class="form-group">
-                  <mat-form-field class="full-width">
-                    <mat-label>Agenda</mat-label>
-                    <textarea matInput formControlName="agenda"  name="Agenda" placeholder="Agenda*" required></textarea>
-                    <mat-error *ngIf="meetingService.form.controls['agenda'].errors?.required">You must enter agenda for meeting.</mat-error>
-                    <mat-error *ngIf="meetingService.form.controls['agenda'].errors?.minlength">Minimum 15 characters needed.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <div class="form-group">
-                  <mat-form-field class="full-width">
-                    <mat-label>Attendee List</mat-label>
-                    <textarea matInput formControlName="attendeeList" name="AttendeeList" placeholder="AttendeeList"></textarea>
-                    <mat-error >Please enter attendee.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <!-- <div class="form-group">
+            <form [formGroup]="httpService.form" class="my-form">
+              <div class="form-group">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field class="full-width">
+                  <mat-label>Meeting Name</mat-label>
+                  <input matInput formControlName="meetingName" placeholder="Meeting name*" name="meetingName" required>
+                  <mat-error>Meeting Name is Manadary.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Organiser Name</mat-label>
+                  <input matInput formControlName="organiserName" placeholder="Organiser name*" name="organiserName"
+                    required>
+                  <mat-error>Organiser Name is Manadary.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Agenda</mat-label>
+                  <textarea matInput formControlName="agenda" name="Agenda" placeholder="Agenda*" required></textarea>
+                  <mat-error *ngIf="httpService.form.controls['agenda'].errors?.required">You must enter agenda for
+                    meeting.</mat-error>
+                  <mat-error *ngIf="httpService.form.controls['agenda'].errors?.minlength">Minimum 15 characters
+                    needed.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Attendee List</mat-label>
+                  <textarea matInput formControlName="attendeeList" name="AttendeeList" placeholder="AttendeeList"></textarea>
+                  <mat-error>Please enter attendee.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <!-- <div class="form-group">
                   <mat-form-field>
                     <mat-label>Date</mat-label>
-                    <input  matInput formControlName="date" type="date" id="date" [matDatepicker]="picker" placeholder="Choose a date">
+                    <input  matInput formControlName="date"  [matDatepicker]="picker" placeholder="Choose a date">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                     <mat-error >You must select a date.</mat-error>
                   </mat-form-field><br/>
                 </div> -->
-                
-                <div class="form-group">
-                  
-                  <mat-form-field class="full-width">
-                    <mat-label>Start time</mat-label>
-                    <input matInput/>
-                    <input formControlName="startTime"  atp-time-picker value="19:00"/>
-                    <mat-error >You must select a start time.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <div class="form-group">
-                  <mat-form-field class="full-width">
-                    <mat-label>End time</mat-label>
-                    <input matInput/>
-                    <input formControlName="endTime"  atp-time-picker value="19:15"/>
-                    <mat-error >You must select a start time.</mat-error>
-                  </mat-form-field><br/>
-                </div>
-                <div class="form-group">
-                  <mat-form-field>
-                    <mat-select formControlName="roomName" placeholder="Select Room">
-                      <mat-option value="option">None</mat-option>
-                      <ng-container *ngFor="let roomName of roomService.array">
-                        <mat-option value="{{roomName.$key}}">{{roomName.name}} - {{roomName.capacity}}</mat-option>
-                      </ng-container>
-                    </mat-select>
-                    <mat-error> Please Select Room.</mat-error>
-                  </mat-form-field>
-                </div>
-              </form>
-            </mat-card-content>
-            <mat-card-actions>
-              <button type="submit" [disabled]="meetingService.form.invalid"  (click)="onCreateButtonClicked()"   mat-raised-button  color="primary">Create</button>
-              <button type="submit"mat-raised-button (click)="onClearButtonClicked()" color="warn">Clear</button>
-              <button type="submit" mat-raised-button (click)="onBackbuttonClicked()" color="Basic">Back</button>
-            </mat-card-actions>
-            
-          </mat-card>
-        </mat-tab>
-      </mat-tab-group>
-    </section>
-  </div> 
-  <router-outlet></router-outlet>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>Start time</mat-label>
+                  <input matInput />
+                  <input formControlName="startTime" atp-time-picker value="19:00" />
+                  <mat-error>You must select a start time.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <div class="form-group">
+                <mat-form-field class="full-width">
+                  <mat-label>End time</mat-label>
+                  <input matInput />
+                  <input formControlName="endTime" atp-time-picker value="19:15" />
+                  <mat-error>You must select a start time.</mat-error>
+                </mat-form-field><br />
+              </div>
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-select formControlName="roomName" placeholder="Select Room">
+                    <mat-option value="option">None</mat-option>
+                    <ng-container *ngFor="let roomName of roomService.array">
+                      <mat-option value="{{roomName.$key}}">{{roomName.name | uppercase}} - {{roomName.capacity}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                  <mat-error> Please Select Room.</mat-error>
+                </mat-form-field>
+              </div>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button type="submit" [disabled]="httpService.form.invalid" (click)="onCreateButtonClicked()"
+              mat-raised-button color="primary">{{this.httpService.changeButtonName}}</button>
+            <button type="submit" mat-raised-button (click)="onClearButtonClicked()" color="warn">Clear</button>
+            <button type="submit" mat-raised-button (click)="onBackbuttonClicked()" color="Basic">Back</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+  </section>
+</div>
+<router-outlet></router-outlet>

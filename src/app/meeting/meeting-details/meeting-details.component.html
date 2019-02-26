@@ -1,9 +1,8 @@
 <section fxLayout="column wrap">
   <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
-    <mat-tab label="Meeting"> 
+    <mat-tab label="Meeting">
       <mat-card class="my-card">
         <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="end center">
-          <!-- PUT YOUR LIST CAODE HERE -->
           <table class="table table-striped">
             <thead class="thead-light">
               <tr>
@@ -12,48 +11,46 @@
                 <th scope="col">Name</th>
               </tr>
             </thead>
-            <ng-container *ngFor="let meeting of oneArray">
             <tbody>
               <tr>
                 <th scope="row">1</th>
                 <td>Meeting Name</td>
-                <td>{{meeting.meetingName}}</td>
+                <td>{{perticularMeeting.meetingName | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">2</th>
                 <td>Organiser Name</td>
-                <td>{{meeting.organiserName}}</td>
+                <td>{{perticularMeeting.organiserName | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">3</th>
                 <td>Attendee list</td>
-                <td>{{meeting.attendeeList}}</td>
+                <td>{{perticularMeeting.attendeeList | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">4</th>
-                <td>Date</td>
-                <td>{{meeting.date}}</td>
+                <td>Agenda</td>
+                <td>{{perticularMeeting.agenda | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">5</th>
                 <td>Start Time</td>
-                <td>{{meeting.startTime}}</td>
+                <td>{{perticularMeeting.startTime | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">6</th>
                 <td>End Time</td>
-                <td>{{meeting.endTime}}</td>
+                <td>{{perticularMeeting.endTime | uppercase}}</td>
               </tr>
               <tr>
                 <th scope="row">7</th>
                 <td>Room Name</td>
-                <td>{{meeting.roomName}}</td>
+                <td>{{perticularMeeting.roomName | uppercase }}</td>
               </tr>
             </tbody>
-          </ng-container>
           </table>
           <mat-card-actions>
-            <!-- <button class="ml-3" mat-raised-button (click)="onRegisterButtonClicked()" color="primary">Register</button> -->
+            <button class="ml-3" mat-raised-button (click)="onRegisterButtonClicked()" color="primary">Register</button>
             <button mat-raised-button (click)="onBackButtonClicked()" color="accent">Back</button>
           </mat-card-actions>
         </mat-card-content>

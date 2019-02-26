@@ -7,15 +7,13 @@ import { EventEmitter } from 'protractor';
   styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent implements OnInit {
-  
-  
+
   @Output() public sidenavToggle = new EventEmitter();
-  
+
   constructor() { }
-  
-  ngOnInit() {
-  }
-  
+
+  ngOnInit() { }
+
   public onToggleSidenav = () => {
     this.sidenavToggle.emit('');
   }

@@ -5,21 +5,16 @@ import { NewtrainingRoutingModule } from 'src/app/owner/new-trainings/newtrainin
 import { MaterialModule } from 'src/app/material/material.module';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { AmazingTimePickerModule } from 'amazing-time-picker';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { TrainingService } from 'src/app/services/training.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { RoomService } from 'src/app/services/room.service'
+import { RoomService } from 'src/app/services/room.service';
 import { environment } from 'src/environments/environment';
 
-
-
 @NgModule({
-  declarations: [
-    NewTrainingComponent,
-  ],
+  declarations: [NewTrainingComponent],
   imports: [
     CommonModule,
     NewtrainingRoutingModule,
@@ -32,6 +27,7 @@ import { environment } from 'src/environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],
-  providers:[TrainingService,RoomService]
+  exports: [NewTrainingComponent],
+  providers: [RoomService]
 })
 export class NewTrainingsModule { }
