@@ -1,0 +1,141 @@
+<!doctype html>
+<div class="container">
+  <section fxLayout="column wrap">
+    <div fxFlexAlign="center">
+      <p>Welcome to Training and Meeting Application</p>
+    </div>
+    <!-- <p>In this applicatoin we are going to work with:</p> -->
+    <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
+      <mat-tab label="Sign In"> 
+        <mat-toolbar>
+          <span>LOGIN</span>
+        </mat-toolbar>
+        <mat-card class="my-card">
+          <mat-card-content>
+            <div class="example-container">
+              <form [formGroup]="homeService.signIn" class="my-signIn">
+                <div class="controles-container">
+                  <div class="form-group">
+                    <!-- <input type="hidden" formControlName="$key"> -->
+                    <mat-form-field class="full-width">
+                      <mat-label>Email</mat-label>
+                      <input matInput type="email"  formControlName="email" placeholder="Enter your email" name="email" required >
+                      <!-- ?(easternenterprises)?(ansh-system) -->
+                      <!-- <mat-error *ngIf="emailforlogin.invalid">{{getErrorMessageForLogin()}}</mat-error>
+                        <mat-error *ngIf="emailforlogin.pattern">{{getErrorMessageForLogin()}}</mat-error> -->
+                        <mat-error *ngIf="homeService.signIn.controls['email'].errors?.required">You must enter a email.</mat-error>
+                        <mat-error *ngIf="homeService.signIn.controls['email'].errors?.email">Not a valid email.</mat-error>
+                        <mat-error *ngIf="homeService.signIn.controls['email'].errors?.pattern">Domain name must be bluzor.com or easternenterprise.com or ansh-system.com.</mat-error>
+                      </mat-form-field><br/>
+                    </div>
+                    <div class="form-group">
+                      <mat-form-field class="full-width mt-4">
+                        <mat-label>Password</mat-label>
+                        <input  matInput type="password" formControlName="password" placeholder="Password" name="password" required>
+                        <mat-error *ngIf="homeService.signIn.controls['password'].errors?.required">Password is required.</mat-error>
+                        <mat-error *ngIf="homeService.signIn.controls['password'].errors?.minlength">Minimum 6 characters needed.</mat-error>
+                        <mat-error *ngIf="homeService.signIn.controls['password'].errors?.maxlength">More than 15 characters not allowed.</mat-error>
+                        
+                      </mat-form-field>
+                    </div>
+                    <section class="example-section">
+                      <mat-checkbox class="example-margin" [(ngModel)]="checked" [ngModelOptions]="{standalone: true}" >Remember Me</mat-checkbox>
+                    </section>
+                    <section class="example-section">
+                      <!-- <a (onclick)="onForgotPasswordButtonClicked()" href="forgetPassword">Click for forget password</a> -->
+                      <a routerLink="forgotpassword">Click for forget password</a>
+                    </section>
+                  </div>
+                </form>
+              </div>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button [disabled]="homeService.signIn.invalid" (click)="onloginButtonClicked()" color="primary">LOGIN</button>
+            </mat-card-actions>
+          </mat-card>
+        </mat-tab>
+        <mat-tab label="Sign Up">
+          <mat-toolbar>
+            <span>Registration</span>
+          </mat-toolbar>
+          <mat-card class="my-card">
+            <mat-card-content>
+              <div class="example-container">
+                <form [formGroup]="homeService.signUp" class="my-signUp">
+                  <div class="controles-container">
+                    <div class="form-group">
+                      <input type="hidden" formControlName="$key">
+                      <mat-form-field class="full-width">
+                        <mat-label>First Name*</mat-label>
+                        <input  matInput  formControlName="firstName" placeholder="First Name*"  name="firstName"  >
+                        <mat-error *ngIf="homeService.signUp.controls['firstName'].errors?.required">You must enter a first name.</mat-error>
+                        
+                      </mat-form-field><br/>
+                    </div>
+                    <div class="form-group">
+                      <mat-form-field class="full-width">
+                        <mat-label>Last Name*</mat-label>
+                        <input  matInput formControlName="lastName" placeholder="Last Name*" name="lastName"  >
+                        <mat-error *ngIf="homeService.signUp.controls['lastName'].errors?.required">You must enter a last name.</mat-error>
+                        
+                      </mat-form-field><br/>
+                    </div>
+                    <div class="form-group">
+                      <mat-form-field class="full-width">
+                        <mat-label>Email*</mat-label>
+                        <input matInput type="email"  formControlName="email" placeholder="Enter your email*" name="email"  >
+                        <!-- ?(easternenterprises)?(ansh-system) -->
+                        <!-- <mat-error *ngIf="emailforlogin.invalid">{{getErrorMessageForLogin()}}</mat-error>
+                          <mat-error *ngIf="emailforlogin.pattern">{{getErrorMessageForLogin()}}</mat-error> -->
+                          <mat-error *ngIf="homeService.signUp.controls['email'].errors?.required">You must enter a email.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['email'].errors?.email">Not a valid email.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['email'].errors?.pattern">Domain name must be bluzor.com or easternenterprise.com or ansh-system.com.</mat-error>
+                        </mat-form-field><br/>
+                      </div>
+                      <br/>
+                      <div class="form-group">
+                        <mat-form-field class="full-width mt-4">
+                          <mat-label>Password*</mat-label>
+                          <input  matInput type="password" formControlName="password" placeholder="Password*" name="password" >
+                          <mat-error *ngIf="homeService.signUp.controls['password'].errors?.required">Password is required.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['password'].errors?.minlength">Minimum 6 characters needed.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['password'].errors?.maxlength">More than 15 characters not allowed.</mat-error>
+                          
+                        </mat-form-field><br/>
+                      </div>
+                      <div class="form-group">
+                        <mat-form-field class="full-width mt-4">
+                          <mat-label> Confirm Password*</mat-label>
+                          <input  matInput appConfirmPasswordValidator="password" type="password" formControlName="confirmPassword" placeholder=" Repeat Password*" name="confirmPassword" required>
+                          <mat-error *ngIf="homeService.signUp.controls['confirmPassword'].errors?.required">Password is required.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['confirmPassword'].errors?.minlength">Minimum 6 characters needed.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['confirmPassword'].errors?.maxlength">More than 15 characters not allowed.</mat-error>
+                          <mat-error *ngIf="homeService.signUp.controls['confirmPassword'].errors?.notEqual && !['confirmPassword'].errors?.required">Password and Confirm Password does not match.</mat-error>
+                          
+                        </mat-form-field><br/>
+                      </div>
+                      <!-- <mat-form-field class="full-width">
+                        <mat-label>Employee Id</mat-label>
+                        <input  matInput  placeholder="Employee Id" name="Employee Id"  required>
+                      </mat-form-field><br/> -->
+                    </div>
+                  </form>
+                </div>
+              </mat-card-content>
+              <!-- <section class="example-section">
+                <label class="example-margin">Gender: </label>
+                <mat-radio-group [(ngModel)]="gender">
+                  <mat-radio-button class="example-margin ml-2" value="after mr-2">Male</mat-radio-button>
+                  <mat-radio-button class="example-margin ml-2" value="before mr-2">Female</mat-radio-button>
+                  <mat-radio-button class="example-margin mr-1" value="before">Other</mat-radio-button> 
+                </mat-radio-group>
+              </section> -->
+              <mat-card-actions>
+                <button mat-raised-button [disabled]="homeService.signUp.invalid" (click)="onRegisterButtonClick()" color="primary">REGISTER</button>
+                <button mat-raised-button class="ml-3" (click)="onClearButtonClicked()" color="warn">Clear</button>
+              </mat-card-actions>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+      </section>
+    </div>

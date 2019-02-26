@@ -1,0 +1,68 @@
+<section fxLayout="column wrap">
+  <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
+    <mat-tab label="Training"> 
+      <mat-card class="my-card">
+        <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="end center">
+          <!-- PUT YOUR LIST CAODE HERE -->
+          <table class="table table-striped">
+            <thead class="thead-light">
+              <tr>
+                <th scope="row">Sr.No</th>
+                <th scope="col ml-3">Information</th>
+                <th scope="col">Name</th>
+              </tr>
+            </thead>
+            <ng-container *ngFor="let training of oneArray">
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Topic Name</td>
+                <td>{{training.topicName}}}</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Trainer Name</td>
+                <td>{{training.trainerName}}</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Summary</td>
+                <td>{{training.summary}}</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>Date</td>
+                <td>{{training.date}}</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>Start Time</td>
+                <td>{{training.startTime}}</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td> End Time</td>
+                <td>{{training.endTime}}</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>Room Name</td>
+                <td>{{training.roomName}}</td>
+              </tr>
+              <tr>
+              </tbody>
+              </ng-container>s
+            </table>
+            
+            <mat-card-actions>
+              <button class="ml-3" mat-raised-button (click)="onRegisterButtonClicked()" color="primary">Register</button>
+              <button mat-raised-button (click)="onBackButtonClicked()" color="accent">Back</button>
+            </mat-card-actions>
+            
+            
+            
+          </mat-card-content>
+        </mat-card>
+      </mat-tab>
+    </mat-tab-group>
+  </section>

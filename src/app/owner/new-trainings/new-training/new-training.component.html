@@ -1,0 +1,85 @@
+<!-- <application-layout>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav role="navigation">
+      <application-sidenav-list (sidenavClose)="sidenav.close()"></application-sidenav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <application-header (sidenavToggle)="sidenav.toggle()"></application-header> -->
+      <div class="container">
+        <section fxLayout="column wrap">
+          <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
+            <mat-tab label="New-Training"> 
+              <mat-toolbar>
+                <span > New Trainings </span>
+              </mat-toolbar>
+              <mat-card class="my-card">
+                <mat-card-content>
+                  <form [formGroup]="trainingService.form"class="my-form">
+                    <div class="controles-container">
+                      <div class="form-group">
+                        <input type="hidden" formControlName="$key">
+                        <mat-form-field class="full-width">
+                          <mat-label>Topic Name</mat-label>
+                          <input  matInput formControlName="topicName" placeholder="Topic name"  name="TopicName"  required>
+                          <mat-error>Topic Name is Manadary.</mat-error>
+                        </mat-form-field><br/>
+                      </div>
+                      <mat-form-field class="full-width">
+                        <mat-label>Trainer Name</mat-label>
+                        <input  matInput formControlName="trainerName" placeholder="Trainer name"  name="TrainerName"  required>
+                        <mat-error>Trainer Name is Manadary.</mat-error>
+                      </mat-form-field><br/>
+                      <mat-form-field class="full-width">
+                        <mat-label>Summary</mat-label>
+                        <textarea matInput formControlName="summary" name="Summary" placeholder="Summary" required></textarea>
+                        <mat-error *ngIf="trainingService.form.controls['summary'].errors?.required">You must enter summary for training.</mat-error>
+                        <mat-error *ngIf="trainingService.form.controls['summary'].errors?.minlength">Minimum 15 characters needed.</mat-error>
+                      </mat-form-field><br/>
+                      <!-- <mat-form-field>
+                        <mat-label>Date</mat-label>
+                        <input matInput formControlName="date" name="date" [matDatepicker]="picker" placeholder="Choose a date">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error>You must select a date.</mat-error>
+                        
+                      </mat-form-field><br/> -->
+                      <mat-form-field class="full-width">
+                        <mat-label>Start time</mat-label>
+                        <input matInput/>
+                        <input formControlName="startTime" atp-time-picker value="19:00"/>
+                        <mat-error >You must select a start time.</mat-error>
+                      </mat-form-field><br/>
+                      <mat-form-field class="full-width">
+                        <mat-label>End time</mat-label>
+                        <input matInput/>
+                        <input formControlName="endTime" atp-time-picker value="19:15"/>
+                        <mat-error >You must select a end time.</mat-error>
+                        
+                      </mat-form-field><br/>
+                      <mat-form-field>
+                        <mat-select formControlName="roomName" placeholder="Select Room">
+                          <mat-option value="option">None</mat-option>
+                          <ng-container *ngFor="let roomName of roomService.array">
+                            <mat-option value="{{roomName.$key}}">{{roomName.name}}-{{roomName.capacity}}</mat-option>
+                          </ng-container>
+                        </mat-select>
+                        <mat-error>Please Select Room</mat-error>
+                      </mat-form-field>
+                    </div>
+                  </form>
+                </mat-card-content>
+                <mat-card-actions>
+                  <button [disabled]="trainingService.form.invalid" mat-raised-button (click)="onCreateButtonClicked()"  color="primary">Create</button>
+                  <button mat-raised-button (click)="onClearButtonClicked()" color="warn">Clear</button>
+                  <button mat-raised-button (click)="onBackbuttonClicked()" color="Basic">Back</button>
+                </mat-card-actions>
+              </mat-card>
+            </mat-tab>
+          </mat-tab-group>
+          
+        </section>
+      </div>
+      <!-- </mat-sidenav-content>
+      </mat-sidenav-container>
+    </application-layout> -->
+    <router-outlet></router-outlet>

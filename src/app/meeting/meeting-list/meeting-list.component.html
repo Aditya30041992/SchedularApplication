@@ -1,0 +1,140 @@
+<div fxLayout="row wrap" fxLayoutAlign="center center" class="layout-wrapper">
+  <div fxFlex="100%" fxFlex.lt-md="100%" class="flex-wrapper">
+    <mat-toolbar color="primary">
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div>
+        <a routerLink="/home">Home</a>
+      </div>
+      <div fxFlex fxLayout="row" fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout="row" fxLayoutGap="15px" class="navigation-items">
+          
+          <li>
+            <a [routerLink]="['/owner/owners']">Training List</a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+    <section fxLayout="column wrap">
+      <mat-tab-group (selectedTabChange)="executeSelectedChange($event)">
+        <mat-tab label="Meetings"> 
+          <mat-toolbar>
+            <span> Upcoming Meetings </span>
+            <div fxFlex fxLayout="row" fxLayoutAlign="end center">
+              <mat-card-actions>
+                <button mat-raised-button (click)="onNewMeetingButtonClicked()" class="ml-4 mt-3" color="primary">New Meeting</button>
+              </mat-card-actions>
+            </div>
+          </mat-toolbar>
+          
+          <!-- mat table,sort code srat from here -->
+          
+          <!--           
+            <div class="search-div">
+              <mat-form-field class="search-form-field" floatLabel="never">
+                <input matInput [(ngModel)]="searchKey" placeHolder="Search" autocomplete="off" (keyup)="applyFilter()">
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div> -->
+            
+            <!-- <div class="mat-elevation-z8">
+              <mat-table  [dataSource] = "meetingListData" matSort>
+                <ng-container matColumnDef="Meeting Name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Meeting Name</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.meetingName}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Organiser Name" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Organiser Name</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.organiserName}}</mat-cell>
+                </ng-container> -->
+                
+                <!-- <ng-container matColumnDef="Date">
+                  <mat-header-cell *matHeaderCellDef>Date</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.date}}</mat-cell>
+                </ng-container> -->
+                
+                <!-- <ng-container matColumnDef="Start Time">
+                  <mat-header-cell *matHeaderCellDef>Start Time</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.startTime}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="End Time">
+                  <mat-header-cell *matHeaderCellDef>End Time</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.endTime}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Room Name" >
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Room Name</mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.roomName}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="Actions">
+                  <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                  <mat-cell *matCellDef="let row">
+                    <mat-card-actions class="example-button-row">
+                      <button  mat-raised-button-sm (click)="meetingService.populateForm(meeting)" color="primary">EDIT</button>
+                      <button  mat-raised-button-sm (click)="meetingService.populateForm(meeting.$key)" color="accent">Info</button>
+                      <button  mat-raised-button-sm (click)="onDeleteButtonClicked(meeting.$key)" color="warn">Delete</button>
+                    </mat-card-actions>
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="loading">
+                  <mat-footer-cell *matFooterCellDef colspan="6">Loading Data</mat-footer-cell>
+                </ng-container>
+                <ng-container matColumnDef="No Data">
+                  <mat-footer-cell *matFooterCellDef colspan="6">No Data</mat-footer-cell>
+                </ng-container>
+                
+                <mat-header-row *matHeaderRowDef="displayColumndata"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayColumndata;"></mat-row>
+                <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': meetingListData!=null}"></mat-footer-row>
+                <mat-footer-row *matFooterRowDef="['No Data']" [ngClass]="{'hide':!(meetingListData!=null && meetingListData.data.length==0)}"></mat-footer-row>
+              </mat-table>
+              <mat-paginator [pageSizeOptions]="[5,10,20,30]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+            </div> -->
+            
+            <!-- </mat-card-content>
+            </mat-card> -->
+            
+            <mat-card class="my-card">
+              <mat-card-content fxFlex fxLayout="row" fxLayoutAlign="end center">
+                <table class="table table-striped">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Meeting Name</th>
+                      <th scope="col">Organiser Name</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Start Time</th>
+                      <th scope="col">End Time</th>
+                      <th scope="col">Room Name</th>
+                      <th scope="col">Buttons</th>
+                    </tr>
+                  </thead>
+                  <ng-container *ngFor="let meeting of array">
+                    <tbody>
+                      <tr>
+                        <td>{{meeting.meetingName}}</td>
+                        <td>{{meeting.organiserName}}</td>
+                        <td>{{meeting.date}}</td>
+                        <td>{{meeting.startTime}}</td>
+                        <td>{{meeting.endTime}}</td> 
+                        <td>{{meeting.roomName}}</td>
+                        <td>
+                          <mat-card-actions>
+                            <button class="ml-3" mat-raised-button (click)="meetingService.populateForm(meeting)" color="primary">EDIT</button>
+                            <button class="ml-2" mat-raised-button (click)="onDetailsButtonClicked()" color="accent">DETAILS</button>
+                            <button class="ml-1" mat-raised-button (click)="onDeleteButtonClicked(meeting.$key)" color="warn">Delete</button>
+                          </mat-card-actions></td> 
+                        </tr>
+                      </tbody>       
+                    </ng-container>
+                  </table>
+                </mat-card-content> 
+              </mat-card>
+            </mat-tab>
+          </mat-tab-group>
+        </section>
+      </div>
+    </div>
